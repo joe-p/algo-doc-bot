@@ -26,7 +26,6 @@ async function getSearchResults (queryString: string) {
       return
     } else if (h.object_source === 'blog') {
       label = 'Blog > ' + h.title
-      console.log(label)
     }
 
     const fullLabel = label
@@ -75,7 +74,6 @@ client.on('interactionCreate', async interaction => {
 
   if (interaction.commandName === 'docs') {
     const results = await getSearchResults(interaction.options.getString('query') as string)
-    console.log(results)
     const row = new discordJS.MessageActionRow()
       .addComponents(
         new discordJS.MessageSelectMenu()
