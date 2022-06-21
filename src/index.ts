@@ -82,7 +82,7 @@ client.on('interactionCreate', async interaction => {
           .addOptions(results)
       )
 
-    await interaction.reply({ content: 'Which page do you want to link to?', components: [row], ephemeral: true })
+    await interaction.reply({ content: 'Which page do you want to share?', components: [row], ephemeral: true })
   }
 })
 
@@ -97,7 +97,8 @@ client.on('interactionCreate', async interaction => {
       url = 'https://developer.algorand.org' + url
     }
 
-    const message = `${interaction.user.toString()} shared ${url}`
-    interaction.channel?.send(message)
+    const content = `${interaction.user.toString()} shared ${url}`
+    const message = await interaction.channel?.send(content)
+		await interaction.update({ content: `Link shared! ${message?.url}`, components: [] })
   }
 })
